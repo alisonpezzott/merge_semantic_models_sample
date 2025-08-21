@@ -1,0 +1,52 @@
+table FactAbsenteeism
+	lineageTag: ec44b4d6-fa16-4319-82ef-50479d57a584
+	sourceLineageTag: [dbo].[FactAbsenteeism]
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3fd6f183-2c0d-4da3-be91-696838090892
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: f35b1551-da81-442e-a97a-44a69efecfc1
+		sourceLineageTag: EmployeeID
+		summarizeBy: count
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardHours
+		dataType: double
+		lineageTag: 11e4bc73-6add-435e-bb1b-fd38d088a778
+		sourceLineageTag: StandardHours
+		summarizeBy: sum
+		sourceColumn: StandardHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WorkedHours
+		dataType: double
+		lineageTag: 0e8d86db-1f0d-4408-b65f-9d8943eca4e2
+		sourceLineageTag: WorkedHours
+		summarizeBy: sum
+		sourceColumn: WorkedHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactAbsenteeism = entity
+		mode: directLake
+		source
+			entityName: FactAbsenteeism
+			expressionSource: 'DirectLake - LK_Lakehouse'
+

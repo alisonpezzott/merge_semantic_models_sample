@@ -1,0 +1,4 @@
+relationship 86345c13-1567-1cd8-3f36-31d484036018
+	fromColumn: FactAbsenteeism.Date
+	toColumn: DimCalendar.Date
+

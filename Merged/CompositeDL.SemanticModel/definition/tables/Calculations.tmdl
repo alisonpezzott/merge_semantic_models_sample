@@ -1,0 +1,20 @@
+table Calculations
+	lineageTag: 0e12059b-e100-49d7-ad92-9f8a4b374e5f
+
+	column Value
+		formatString: 0
+		lineageTag: f3a495d8-c0fe-41af-9c3a-dc36fddb4b89
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calculations = calculated
+		mode: import
+		source = ```
+				{0} 
+				```
+
+	annotation PBI_Id = 1948e31b12a14c48af018f74f69736a8
+

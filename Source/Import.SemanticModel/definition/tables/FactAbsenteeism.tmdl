@@ -1,0 +1,56 @@
+table FactAbsenteeism
+	lineageTag: e9ff3222-213d-4e1a-8b65-c9f02c89e3fb
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: 0e881724-6bea-4102-9043-af3e28913ea4
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 7093e8fd-773f-4a82-9cc9-3272568b866c
+		summarizeBy: count
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardHours
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 2ce78a6e-682f-4373-8fdc-4cc44c84d715
+		summarizeBy: sum
+		sourceColumn: StandardHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WorkedHours
+		dataType: double
+		sourceProviderType: float
+		lineageTag: ae2151d4-b50c-47d1-b51c-14a02c82b920
+		summarizeBy: sum
+		sourceColumn: WorkedHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactAbsenteeism = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("gvkmt76pz4cuhm2fs63qgxl5cy-ncranh6xlgfeto3pufo4nxstxu.datawarehouse.fabric.microsoft.com", "LK_Lakehouse"),
+				    dbo_FactAbsenteeism = Source{[Schema="dbo",Item="FactAbsenteeism"]}[Data]
+				in
+				    dbo_FactAbsenteeism
+
